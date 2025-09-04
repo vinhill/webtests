@@ -1,0 +1,26 @@
+<script>
+function w(m) {
+  console.log(m);
+  if (window.dump) dump(m + '\n');
+}
+
+window.location = "https://example.com";
+w('started nav');
+
+let x = new XMLHttpRequest();
+x.open("GET", "https://httpbin.org/delay/10", false);
+
+const events = ["readystatechange", "loadstart", "progress", "abort", "error", "load", "timeout", "loadend"];
+for (const e of events) {
+  x.addEventListener(e, () => w(`Got event ${e}`) );
+}
+
+try {
+  w('sending');
+  x.send();
+  w('send done');
+} catch (e) {
+  w('error');
+}
+
+</script>
