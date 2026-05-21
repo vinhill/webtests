@@ -1,0 +1,27 @@
+<a href=https://github.com/w3c/selection-api/pull/357>Issue #357</a>
+
+<meta charset="utf-8">
+
+<p dir=ltr>abc אבג def</p> 
+<br>
+<p dir=rtl>abc אבג def</p>
+
+<button>forward</button>
+<button>backward</button>
+<button>left</button>
+<button>right</button>
+
+<div id=out></div>
+
+<script>
+document.querySelectorAll("button").forEach(btn =>
+ btn.onclick = () => {
+  window.getSelection().modify("extend", btn.textContent, "character");
+ }
+);
+document.onselectionchange = () => {
+ const s = window.getSelection();
+ out.innerHTML = `anchor ${s.anchorOffset} focus ${s.focusOffset}`;
+}
+</script>
+
