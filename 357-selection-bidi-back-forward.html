@@ -6,6 +6,7 @@
 <br>
 <p dir=rtl>abc אבג def</p>
 
+<input id=in_alter value="extend">
 <button>forward</button>
 <button>backward</button>
 <button>left</button>
@@ -16,7 +17,8 @@
 <script>
 document.querySelectorAll("button").forEach(btn =>
  btn.onclick = () => {
-  window.getSelection().modify("extend", btn.textContent, "character");
+  const alter = in_alter.value;
+  window.getSelection().modify(alter, btn.textContent, "character");
  }
 );
 document.onselectionchange = () => {
